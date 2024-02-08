@@ -1,0 +1,646 @@
+
+    body{
+      font-size:2rem;
+    }
+    .option{
+      display: flex; /*要素の並列化*/
+      align-items: center;
+      padding: 0px 20px;
+      background-color:rgba(255, 255, 255, 0.5);
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      font-family: 'Poppins', sans-serif;
+      z-index: 100;
+    }
+
+    .option:hover{
+      background-color: #fff;
+    }
+
+    .container{
+        width: 90%;
+        max-width: 1120px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .flex {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+
+    .pop{
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .option p{
+      font-size: 2.3rem;
+      font-weight: bolder;
+      color: darkslategray;
+    }
+
+    html{
+      font-size:62.5%;
+        /* font-family: 'Dancing Script', cursive; */
+        font-family: 'Noto Sans JP', sans-serif;
+        /* font-family: 'Poppins', sans-serif; */    
+    }
+
+    .logo {
+      font-size:2rem;
+    }
+
+    .list_nav_hedder > li + li{
+      margin-left:1.5rem;
+    }
+
+    .list_nav_hedder{
+      display: flex;
+      align-items: center;
+      list-style-type: none!important;
+    }
+
+    .list_nav_hedder a , .nav_list a , #another_group dt a , .footer_bottom li a{
+      text-decoration: none;
+    }
+
+    .naw{
+      margin-left: auto;
+    }
+
+    .logo li a , .naw li a , #another_group dt a{
+    /*個別に線の基点とするためrelativeを指定*/
+      position: relative;
+    }
+
+    .logo li.current a,
+    .logo li a:hover,
+    .naw li.current a,
+    .naw li a:hover,
+    #another_group dt.current a,
+    #another_group dt a:hover
+    {
+      color:#0481A2;
+    }
+
+    .logo li a::after , .naw li a::after , #another_group dt a::after{
+      content: '';
+      /*絶対配置で線の位置を決める*/
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      /*線の形状*/
+      width: 80%;
+      height: 2px;
+      background:#0481A2;
+      /*アニメーションの指定*/
+      transition: all .3s;
+      transform: scale(0, 1);/*X方向0、Y方向1*/
+      transform-origin: center top;/*上部中央基点*/
+    }
+
+    /*現在地とhoverの設定*/
+      .logo li.current a::after,
+      .logo li a:hover::after ,
+      .naw li.current a::after,
+      .naw li a:hover::after,
+      #another_group dt.current a::after,
+      #another_group dt a:hover::after 
+      {
+      transform: scale(1, 1);/*X方向にスケール拡大*/
+    }
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+    .lead{
+      padding: 50px 20px;
+    }
+
+
+/* ここから下がハンバーガーメニューに関するCSS */
+  
+/* チェックボックスを非表示にする */
+    .drawer_hidden {
+      display: none;
+    }
+
+/* ハンバーガーアイコンの設置スペース */
+    .drawer_open {
+      display: flex;
+      height: 60px;
+      width: 60px;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 100;/* 重なり順を一番上にする */
+      cursor: pointer;
+    }
+
+/* ハンバーガーメニューのアイコン */
+    .drawer_open span,
+    .drawer_open span:before,
+    .drawer_open span:after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 25px;
+      border-radius: 3px;
+      background: #333;
+      transition: 0.5s;
+      position: absolute;
+    }
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer_open span:before {
+  bottom: 8px;
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer_open span:after {
+  top: 8px;
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer_input:checked ~ .drawer_open span {
+  background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer_input:checked ~ .drawer_open span::before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+
+#drawer_input:checked ~ .drawer_open span::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+  
+/* メニューのデザイン*/
+.nav_content {
+  min-width:25%;
+  height: 30%;
+  bottom: 63%;
+  position: fixed;
+  right: -100%; /* メニューを画面の外に飛ばす */
+  z-index: 99;
+  background:azure;
+  transition: right 0.5s ease;
+  overflow: auto;
+  display: flex;
+}
+
+@media screen and (max-width: 538px) {
+  .nav_content {
+    width: 100%;
+    height: 30%;
+    position: fixed;
+    bottom:60.5%;
+    right: -100%;
+    z-index: 99;
+    background:azure;
+    transition: right 0.5s ease;
+    overflow: auto;
+    display: flex;
+  }
+}
+
+/* メニュー黒ポチを消す */
+.nav_list {
+  display: flex;
+  flex-flow: column;
+  position: absolute;
+  text-align: left;
+  list-style-type: none!important;
+  font-weight: bolder;
+}
+
+.nav_content>.nav_list > li+li{
+    margin-top: 10px;
+}
+
+
+/* アイコンがクリックされたらメニューを表示 */
+#drawer_input:checked ~ .nav_content {
+  right: 1px;/* メニューを画面に入れる */
+}
+
+
+    h1{
+      color:darkslategray;
+      font-style:oblique;
+      margin-top: 20px;
+    }
+
+    .OITVLLpng{
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .OITVLLpng > a{
+      width: 100px;
+      height: auto;
+      justify-content: center;
+      align-items: center;
+    }
+    .wrapper{
+      text-align: center;
+    }
+    
+    .gifpng{
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      vertical-align: top;
+      list-style-type: none!important;
+      width: 250px;
+      height: 250px;
+      margin-bottom: 10px;
+    }
+    .apng-image{
+      list-style: none;
+    }
+
+    .mainhedder{
+        font-size: 24px;
+        font-weight: 700;
+    }
+    .mainhedder span{
+        color:#0481A2
+    }
+    .logo a{
+        text-decoration: none;
+    }
+
+    #TIMEBOX{
+      display: flex;
+      position: fixed;
+      right: 3%;
+      max-height: 150px;
+      max-width: 200px;
+      bottom: 3%;
+      z-index: 100;
+    }
+
+    .mess span{
+      position: absolute;
+      color: red;
+      align-items: center;
+      font-size: 2vmin;
+      text-align: center;
+      font-weight: bolder;
+      transform: translateY(-150%);
+    }
+
+    .mess{
+      position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 2vmin;
+      text-align: center;
+      font-weight: bolder;
+      transform: translateY(20%);
+    }
+    
+    #watch{
+      margin-left: auto;
+    }
+
+     /*=== 画像の表示エリア ================================= */
+ .slide {
+  position:relative;
+  overflow   : hidden;
+  /* 画像のサイズに合わせて変更ください */
+  width: 100%;
+  max-width: 1310px;
+  height: 90vh;
+  max-height: 1144px;
+  margin     :  0 auto;      /* サンプルは中央寄せの背景：白 */
+  background : #fff;
+  z-index: -1;
+  border-radius: 25%;
+}
+
+@media screen and (min-width:1650px) {
+  .slide {
+    position:relative;
+    overflow   : hidden;
+    /* 画像のサイズに合わせて変更ください */
+    width: 1310px;
+    height: 1144px;
+    margin     :  0 auto;      /* サンプルは中央寄せの背景：白 */
+    background : #fff;
+    z-index: -1;
+    border-radius: 25%;
+  }
+}
+ 
+ /*=== 画像の設定 ======================================= */
+.slide img {
+  display    : block;
+  position   : absolute;
+  /* 画像のサイズを表示エリアに合せる */
+  object-fit: cover;
+  width      : 100%;
+  height     : 100%;
+  left       : 100%;
+  animation  : slideAnime 21s ease infinite;
+}
+ 
+ /*=== スライドのアニメーションを段差で開始する ========= */
+.slide img:nth-of-type(1) { animation-delay: 0s }
+.slide img:nth-of-type(2) { animation-delay: 7s }
+.slide img:nth-of-type(3) { animation-delay: 14s }
+ 
+ /*=== スライドのアニメーション ========================= */
+@keyframes slideAnime{
+   0% { left: 100%  }
+   2% { left: 0     }
+  31% { left: 0     }
+  33% { left: -100% }
+ 100% { left: -100% }
+}
+
+.space{
+    height:10px;
+}
+
+#concept{
+  margin-bottom: 120px;
+  margin-top: 50px;;
+}
+
+#activity{
+  margin-bottom: 120px;
+}
+
+#concept h2 span , #activity h2 span , #report h2 span , #My_group h2 span , #another_group h2 span , #organization h2 span{
+  font-size: 25px;
+  font-weight: 300;
+}
+
+.title{
+  font-size: 50px;
+  font-weight: 500;
+  color:cadetblue;
+  margin-bottom: 30px;
+}
+#concept h3 , #activity h3{
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 60px;
+}
+.column-2{
+  width: 48%;
+}
+.text{
+  line-height: 2;
+}
+.concept-img{
+  background-image: url(../images/warld1.png);
+  background-position: center;
+  background-size: cover;
+  height: 340px;
+  border-radius: 20px;
+}
+
+.active-img{
+  background-image: url(../images/スクリーンショット\ 2023-12-26\ 140544.png);
+  background-position: center;
+  background-size: cover;
+  height: 340px;
+  border-radius: 20px;
+}
+
+.headding{
+  font-family: 'Dancing Script', cursive;
+  font-size: 200px;
+  font-weight: 700;
+  color:cadetblue;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-15%);
+  z-index: -1;
+}
+
+.reportheadding{
+  font-family: 'Dancing Script', cursive;
+  font-size: 180px;
+  font-weight: 700;
+  color:cadetblue;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(-20%);
+  z-index: -1;
+}
+
+.reheadding{
+  font-family: 'Dancing Script', cursive;
+  font-size: 200px;
+  font-weight: 700;
+  color:cadetblue;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(115%);
+  z-index: -1;
+}
+
+.reportreheadding{
+  font-family: 'Dancing Script', cursive;
+  font-size: 180px;
+  font-weight: 700;
+  color:cadetblue;
+  opacity: 0.1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(80%);
+  z-index: -1;
+}
+
+#report{
+  margin-bottom: 120px;
+}
+
+.report_in{
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.column-40{
+  width: 40%;
+}
+
+.column-55{
+  width: 55%;;
+}
+
+#report h3{
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.report-img1{
+  background-image: url(../images/クリスマスライブ.gif);
+  background-position: center;
+  background-size: cover;
+  height: 340px;
+  border-radius: 20px;
+}
+
+@media screen and (max-width:500px) {
+  .report-img1{
+    background-image: url(../images/クリスマスライブ.gif);
+    background-position: center;
+    background-size: cover;
+    height: 340px;
+    width: 340px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .report-img2{
+    background-image: url(../images/qa.png);
+    background-position: center;
+    background-size: cover;
+    height: 340px;
+    width: 340px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .report-img3{
+    background-image: url(../images/No\ Date.png);
+    background-position: center;
+    background-size: cover;
+    height: 340px;
+    width: 340px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .column-55{
+    width: 80%;
+    margin-left: 0;
+  }
+}
+
+.report-img2{
+  background-image: url(../images/qa.png);
+  background-position: center;
+  background-size: cover;
+  height: 340px;
+  border-radius: 20px;
+}
+
+.report-img3{
+  background-image: url(../images/No\ Date.png);
+  background-position: center;
+  background-size: cover;
+  height: 340px;
+  width: 340px;
+  border-radius: 20px;
+}
+
+#My_group , #another_group , #organization{
+  margin-bottom: 120px;
+}
+
+#My_group dl , #another_group dl , #organization dl{
+  max-width: 900px;
+  margin-left: auto;
+}
+
+#My_group dt  , #organization dt{
+  width: 30%;
+  padding: 48px 0;
+  border-bottom: solid 1px #333;
+}
+
+#another_group dt{
+  width: 30%;
+  padding: 48px 0;
+  text-align: center;
+  justify-content: center;
+  background-color:rgba(255,255,255,0.7);
+}
+
+
+@media screen and (max-width: 609px) {
+  #another_group dt{
+    width: 30%;
+    padding: 48px 0;
+    text-align: center;
+    justify-content: center;
+    border-bottom: none;
+  }
+}
+
+#My_group dd , #organization dd{
+  width: 70%;
+  padding: 48px 0;
+  border-bottom: solid 1px #333;
+}
+
+.aboutmess{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sns{
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.sns li{
+  width: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  list-style: none;
+}
+
+footer{
+  background-color: rgba(146, 144, 144, 0.815);
+}
+
+.footer_bottom{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer_bottom li{
+  list-style: none;
+  margin-left: 20px;
+}
+.footer_logo a{
+  justify-content: center;
+  text-align: center;
+}
+.footer_logo{
+  padding-bottom: 20px;
+}
+.footer_logo hr{
+  border: none;
+  border-bottom: solid 1px #0481A2;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.footer_bottom a:hover{
+  color: #0481A2;
+}

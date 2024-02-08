@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>OITVL研_システム実装班</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+  <link rel="stylesheet" href="./css/program1.css">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+  <link rel="stylesheet" type="text/css" href="http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/9-1/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/9-1/css/9-1.css">
+  
+</head>
+<body>
+  <header class="option">
+    <div class="logo">
+      <a href="file:///C:/Users/sncl7/Documents/js/program1/program1.html" class="mainhedder"><h2><span>OITVL</span>システム実装班</h2></a>
+      <ul class="list_nav_hedder">
+        <li>
+            <a href="https://oitvl.com/">OITVLホームページへ</a>
+        </li>
+        <li>
+            <a href="https://oitvl.com/#report">新着情報</a>
+        </li>
+        <li>
+            <a class="nav_botom" href="https://docs.google.com/forms/d/e/1FAIpQLSeItqz5cvPB1ZHmfANIMqtxcIXrgudDxnhrefvgSYy0VBI_kw/viewform">お問い合わせ</a>
+        </li>
+      </ul>
+    </div>
+
+      <div class="naw">
+        <input id="drawer_input" class="drawer_hidden" type="checkbox">
+        <!-- ハンバーガーアイコン -->
+        <label for="drawer_input" class="drawer_open"><span></span></label>
+  
+        <!-- メニュー -->
+        <nav class="nav_content">
+          <ul class="nav_list">
+            <li class="nav_item"><a href="#concept">Work space</a></li>
+            <li class="nav_item"><a href="#activity">Active</a></li>
+            <li class="nav_item"><a href="#report">Report</a></li>
+            <li class="nav_item"><a href="#My_group">My group</a></li>
+            <li class="nav_item"><a href="#another_group">another group</a></li>
+            <p>-その他-</p>
+            <li class="nav_item"><a href="https://oitvl.com/">OITVL</a></li>
+            <li class="nav_item"><a href="https://drive.google.com/file/d/1pgav7J6Tz_TFEGZgQhLgfbeTeRDtgI7W/view?usp=drive_link">点滅完成？？</a></li>
+            <li class="nav_item"><a href="https://www.youtube.com/watch?v=HUUGnGzhrPI">北山祭360度動画</a></li>
+          </ul>
+        </nav>
+      </div>
+  </header>
+
+  <div class="space"></div>
+
+
+  <div id="TIMEBOX">
+            <div class="mess">
+              <p><span>改装中！！</span></p>
+          <!--時計オプション-->
+          <p>時刻：</p>
+          <div id="watch"></div>
+          </div>
+          <script>
+            const watch = document.querySelector('#watch');
+            function getCurrentTime(){
+              const date = new Date();
+              return date.toLocaleTimeString();
+            }
+    
+            function updatetime(){
+              const currentTime = getCurrentTime();
+              watch.innerHTML = currentTime;
+            }
+    
+            updatetime();
+            setInterval(updatetime,1000);
+          </script>
+  </div>
+
+  <main>
+      <div class="slide" id="makeImg">
+        <img src="images/newlogo.png"   alt="ogping">
+        <img src="images/warld1.png"    alt="warld1">
+        <img src="images/qa.png"    alt="qa">
+      </div>
+  
+    <div class="memo">
+
+    <section id="concept" class="container">
+      <div class="headding">OITVL</div>
+      <h2 class="title pop">Work space<span> -活動方法- </span></h2>
+      <h3>活動場所や方法</h3>
+      <div class="flex">
+        <div class="column-2 concept-img"></div>
+        <div class="column-2">
+          <div class="reheadding">OITVL</div>
+          <p class="text">
+            ・Discordを使った連絡や会議を行い、オンラインでの活動が主流。
+            <br/>
+            <br/>
+            ・GitHubDesktopを使ったUnityの共同開発を行っている
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="activity" class="container">
+      <div class="headding">OITVL</div>
+      <h2 class="title pop">Active<span> -活動内容- </span></h2>
+      <h3>ライブをするにあたり、必要になってくるシステムの実装を担う</h3>
+      <div class="flex">
+        <div class="column-2">
+          <p class="text">
+            システム実装班の主な仕事は3つ<br/>
+            <br/>
+            1.ライティングによる臨場感の向上<br/>
+            2.タイムラインでライブの一連を作成<br/>
+            3.アニメーションをモデルに適用<br/>
+          </p>
+        </div>
+        <div class="column-2 active-img">
+          <div class="reheadding">OITVL</div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="report" class="container">
+      <h2 class="title pop">Report<span> -活動実績- </span></h2>
+      <div class="report_in flex">
+        <div class="reportheadding">OITVL</div>
+        <div class="column-40 report-img1">
+        </div>
+        <div class="column-55">
+          <div class="reportreheadding">OITVL</div>
+          <h3>学内イベントクリスマスライブに出演</h3>
+          <p class="text">2023/12/19、大阪工業大学枚方キャンパスで開かれたクリスマスライブにVRワールドを上映。</p>
+        </div>
+      </div>
+      <div class="report_in flex">
+        <div class="reportheadding">OITVL</div>
+        <div class="column-40 report-img2">
+        </div>
+        <div class="column-55">
+          <div class="reportreheadding">OITVL</div>
+          <h3>学内イベント北山祭でVRライブを実施</h3>
+          <p class="text">2023/11/3、大阪工業大学枚方キャンパスで開かれた北山祭にVRライブを上映。</p>
+        </div>
+      </div>
+      <div class="report_in flex">
+        <div class="reportheadding">OITVL</div>
+        <div class="column-40 report-img3">
+        </div>
+        <div class="column-55">
+          <div class="reportreheadding">OITVL</div>
+          <h3>更新予定</h3>
+          <p class="text">None</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="My_group" class="container">
+      <h2 class="title pop">My group<span> -システム実装班- </span></h2>
+      <dl class="flex">
+        <div class="headding">OITVL</div>
+        <div class="reheadding">OITVL</div>
+        <dt>班長</dt>
+        <dd>さとしろ</dd>
+        <dt>班員数</dt>
+        <dd>5人</dd>
+      </dl>
+    </section>
+
+    <section id="another_group" class="container">
+      <h2 class="title pop">another group<span> -他班紹介- </span></h2>
+      <dl class="flex">
+        <div class="headding">OITVL</div>
+        <div class="reheadding">OITVL</div>
+        <dt><a href="">運営班</a></dt>
+        <dt><a href="">広報班</a></dt>
+        <dt><a href="">ライブ演出研究班</a></dt>
+        <dt><a href="">3dcg班</a></dt>
+        <dt><a href="">モーション班</a></dt>
+        <dt><a href="">デザイン班</a></dt>
+        <dt><a href="">映像編集班</a></dt>
+        <dt><a href="">音楽班</a></dt>
+      </dl>
+    </section>
+
+    <!-- <section id="organization" class="container"> -->
+      <!-- <h2 class="title pop">organization<span> -組織- </span></h2> -->
+      <!-- <dl class="flex"> -->
+        <!-- <div class="headding">OITVL</div> -->
+        <!-- <div class="reheadding">OITVL</div> -->
+        <!-- <dt>サークル名</dt> -->
+        <!-- <dd>OITVL研 (OITバーチャルライブ研究会)</dd> -->
+        <!-- <dt>サークル代表</dt> -->
+        <!-- <dd>さとしろ</dd> -->
+        <!-- <dt>部員数</dt> -->
+        <!-- <dd>人</dd> -->
+      <!-- </dl> -->
+    <!-- </section> -->
+
+
+    <div class="flex">
+      <p class="aboutmess">
+        これからもよろしくお願いします。
+      </p>
+    </div>
+    <div class="wrapper">
+    <ul class="gifpng">
+      <li><img class="iapng-image" src="images/newlogo.png" alt="miku"></li>
+      <!-- <li><img class="apng-image" src="images/newlogo.png" alt="miku"></li> -->
+    </ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer_logo">
+      <a href="file:///C:/Users/sncl7/Documents/js/program1/program1.html" class="mainhedder"><h2><span>OITVL</span>システム実装班</h2></a>
+      <ul class="sns">
+        <li>
+          <a href="https://note.com/good_eel104/" target="_blank">
+            <img src="images/icon.png" alt="note">
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/oit_vlken?ref_src=twsrc%5Etfw%7Ctwcamp%5Eembeddedtimeline%7Ctwterm%5Escreen-name%3Aoit_vlken%7Ctwcon%5Es1_c1" target="_blank">
+            <img src="images/logo-black.png" alt="x">
+          </a>
+        </li>
+        <li>
+            <a href="https://oitvl.com/" target="_blank">
+              <img src="images/ogpimg.png" alt="OITVL"/>
+            </a>
+        </li>
+      </ul>
+
+      <hr/>
+      
+      <ul class="footer_bottom">
+        <li>
+            <a href="https://oitvl.com/">OITVLホームページへ</a>
+        </li>
+        <li>
+            <a href="https://oitvl.com/#report">新着情報</a>
+        </li>
+        <li>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeItqz5cvPB1ZHmfANIMqtxcIXrgudDxnhrefvgSYy0VBI_kw/viewform">お問い合わせ</a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
